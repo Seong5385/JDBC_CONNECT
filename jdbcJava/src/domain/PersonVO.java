@@ -12,7 +12,7 @@ public class PersonVO {
     private String userEmail;
     private String phone1;
     private String phone2;
-    private int age;
+    private byte age;
     private String addr1;
     private String addr2;
     private Date regDate;
@@ -41,7 +41,7 @@ public class PersonVO {
                 this.userEmail = rs.getString("userEmail");
                 this.phone1 = rs.getString("phone1");
                 this.phone2 = rs.getString("phone2");
-                this.age = rs.getInt("age");
+                this.age = rs.getByte("age");
                 this.addr1 = rs.getString("addr1");
                 this.addr2 = rs.getString("addr2");
                 this.regDate = rs.getTimestamp("regDate");
@@ -132,6 +132,133 @@ public class PersonVO {
                 regDate, modDate);
     }
 
+    public static class Builder {
+        private long id;
+        private String userId;
+        private String userPw;
+        private String userName;
+        private String userEmail;
+        private String phone1;
+        private String phone2;
+        private byte age;
+        private String addr1;
+        private String addr2;
+        private Date regDate;
+        private Date modDate;
+
+        public Builder id(long id) {
+            this.id = id;
+            return this;
+        }
+
+        public Builder userId(String userId) {
+            this.userId = userId;
+            return this;
+        }
+
+        public Builder userPw(String userPw) {
+            this.userPw = userPw;
+            return this;
+        }
+
+        public Builder userName(String userName) {
+            this.userName = userName;
+            return this;
+        }
+
+        public Builder userEmail(String userEmail) {
+            this.userEmail = userEmail;
+            return this;
+        }
+
+        public Builder phone1(String phone1) {
+            this.phone1 = phone1;
+            return this;
+        }
+
+        public Builder phone2(String phone2) {
+            this.phone2 = phone2;
+            return this;
+        }
+
+        public Builder age(byte age) {
+            this.age = age;
+            return this;
+        }
+
+        public Builder addr1(String addr1) {
+            this.addr1 = addr1;
+            return this;
+        }
+
+        public Builder addr2(String addr2) {
+            this.addr2 = addr2;
+            return this;
+        }
+
+        public Builder regDate(Date regDate) {
+            this.regDate = regDate;
+            return this;
+        }
+
+        public Builder modDate(Date modDate) {
+            this.modDate = modDate;
+            return this;
+        }
+
+        public Builder builder() {
+            return new Builder();
+        }
+
+        public long getId() {
+            return id;
+        }
+
+        public String getUserId() {
+            return userId;
+        }
+
+        public String getUserPw() {
+            return userPw;
+        }
+
+        public String getUserName() {
+            return userName;
+        }
+
+        public String getUserEmail() {
+            return userEmail;
+        }
+
+        public String getPhone1() {
+            return phone1;
+        }
+
+        public String getPhone2() {
+            return phone2;
+        }
+
+        public byte getAge() {
+            return age;
+        }
+
+        public String getAddr1() {
+            return addr1;
+        }
+
+        public String getAddr2() {
+            return addr2;
+        }
+
+        public Date getRegDate() {
+            return regDate;
+        }
+
+        public Date getModDate() {
+            return modDate;
+        }
+
+    }
 }
 
 class InsertData {
@@ -142,14 +269,14 @@ class InsertData {
     private String userEmail;
     private String phone1;
     private String phone2;
-    private int age;
+    private byte age;
     private String addr1;
     private String addr2;
     private Date regDate;
     private Date modDate;
 
     public InsertData(String userId, String userPw, String userName, String userEmail, String phone1,
-            String phone2, int age, String addr1, String addr2) {
+            String phone2, byte age, String addr1, String addr2) {
         this.userId = userId;
         this.userPw = userPw;
         this.userName = userName;
@@ -251,7 +378,7 @@ class InsertData {
 
 class DbConnectionManager {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in, "cp949"));
         while (true) {
             System.out.print("(i: 입력, p: 출력, q: 종료): ");
             String cmd = br.readLine();
@@ -286,7 +413,7 @@ class DbConnectionManager {
         String phone2 = br.readLine();
 
         System.out.print("나이를 입력하세요: ");
-        int age = Integer.parseInt(br.readLine());
+        byte age = Byte.parseByte(br.readLine());
 
         System.out.print("지역을 입력하세요: ");
         String addr1 = br.readLine();
